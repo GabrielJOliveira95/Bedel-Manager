@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;
@@ -73,7 +74,11 @@ public class MainActivity extends AppCompatActivity {
             textInputLayout_senha.setError("Type your password");
         } else {
             textInputLayout_senha.setErrorEnabled(false);
-            startActivity(new Intent(MainActivity.this, FinalList.class));
+            Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this).toBundle();
+            Intent intent = new Intent(MainActivity.this, FinalList.class);
+            intent.putExtras(bundle);
+
+            startActivity(intent);
         }
 
 
