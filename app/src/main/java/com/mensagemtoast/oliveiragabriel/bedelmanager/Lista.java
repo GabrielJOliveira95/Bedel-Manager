@@ -7,32 +7,23 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 public class Lista extends AppCompatActivity {
     private Toolbar toolbar;
     private ListView listTask;
-    private Spinner spinner_schedule;
-    private AppCompatEditText appCompatEditTextRoom;
-    private AppCompatEditText appCompatEditTextData;
-    private Spinner spinner_equip;
-    private Button btn_save;
-    private String itemAtPositionSchedule;
-    private String itemAtPositionEquip;
     private SQLiteDatabase sqLiteDatabase;
-    private String[] vetor = {"Empty field", "Empty field", "Empty field" ,"Empty field", "Empty field", "Empty field"};
     private ArrayList<String> arrayListTask;
     private ArrayList<Integer> arrayListId;
     private ArrayAdapter<String> arrayAdapter;
@@ -49,42 +40,14 @@ public class Lista extends AppCompatActivity {
         toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         listTask = findViewById(R.id.listTask);
-        btn_save = findViewById(R.id.btnSave);
-        spinner_equip = findViewById(R.id.spinner_equip);
-        spinner_schedule = findViewById(R.id.spinner_shedule);
-        appCompatEditTextRoom = findViewById(R.id.editTextRoom);
-        appCompatEditTextData = findViewById(R.id.editTextData);
 
-        ArrayAdapter arrayAdapterEquip = ArrayAdapter.createFromResource(Lista.this, R.array.equipamentos, R.layout.support_simple_spinner_dropdown_item);
-        spinner_equip.setAdapter(arrayAdapterEquip);
+        recoveryTask();
 
-        ArrayAdapter arrayAdapterSchedule = ArrayAdapter.createFromResource(Lista.this, R.array.schedule, R.layout.support_simple_spinner_dropdown_item);
-        spinner_schedule.setAdapter(arrayAdapterSchedule);
+        Bundle bundle = getIntent().getExtras();
+        String taskIntent =   bundle.getString("task");
+        saveTask(taskIntent);
+        recoveryTask();
 
-
-
-        spinner_schedule.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                itemAtPositionSchedule = spinner_schedule.getItemAtPosition(position).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        spinner_equip.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                itemAtPositionEquip = spinner_equip.getItemAtPosition(position).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
         listTask.setLongClickable(true);
         listTask.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -104,20 +67,7 @@ public class Lista extends AppCompatActivity {
                 dialog.create();
                 dialog.show();
 
-
-
-
-
                 return true;
-            }
-        });
-        btn_save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String finalTask = "Room " + appCompatEditTextRoom.getText() + " / " + itemAtPositionEquip + " / " + "Data Number " + appCompatEditTextData.getText() + " / " +  itemAtPositionSchedule + " schedule";
-                saveTask(finalTask);
-                Toast.makeText(Lista.this, "Task saved", Toast.LENGTH_LONG).show();
-
             }
         });
 
@@ -156,6 +106,7 @@ public class Lista extends AppCompatActivity {
         arrayListTask = new ArrayList<>();
         arrayAdapter = new ArrayAdapter<String>(Lista.this, android.R.layout.simple_expandable_list_item_1, android.R.id.text1, arrayListTask );
         listTask.setAdapter(arrayAdapter);
+
 
         cursor.moveToFirst();
 

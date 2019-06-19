@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             textInputLayout_senha.setError("Type your password");
         } else {
             textInputLayout_senha.setErrorEnabled(false);
-            startActivity(new Intent(MainActivity.this, Lista.class));
+            startActivity(new Intent(MainActivity.this, FinalList.class));
         }
 
 
