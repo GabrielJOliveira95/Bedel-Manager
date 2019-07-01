@@ -105,13 +105,13 @@
     </string-array>
 
     <string-array name="equipamentos">
-        <item>DATA</item>
-        <item>DATA-CPU</item>
-        <item>DATA-P2</item>
-        <item>DATA-CPU-P2</item>
+        <item>Datashow</item>
+        <item>Datashow-CPU</item>
+        <item>Datashow-P2</item>
+        <item>Datashow-CPU-P2</item>
         <item>CPU</item>
         <item>P2</item>
-        <item>EXTENÇÃO</item>
+        <item>Extenção</item>
     </string-array>
 
     <string-array name="schedule">
