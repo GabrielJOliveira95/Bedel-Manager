@@ -16,6 +16,8 @@
     <string name="exit">Exit</string>
     <string name="schedule">Schedule</string>
     <string name="n_datashow">Datashow N°</string>
+    <string name="deletar">DELETAR</string>
+    <string name="_1_2_hor_rio">1°/2° - Horário</string>
 
     <string-array name="andar">
         <item>Térreo</item>
@@ -115,9 +117,9 @@
     </string-array>
 
     <string-array name="schedule">
-        <item>1°</item>
-        <item>2°</item>
-        <item>Both</item>
+        <item>1° Horário</item>
+        <item>2° Horário</item>
+        <item>1°/2° Horário</item>
     </string-array>
 
 

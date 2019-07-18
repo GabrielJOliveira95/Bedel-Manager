@@ -9,15 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FinalList"
-            android:theme="@style/AppTheme.Home">
-        </activity>
-        <activity android:name=".Lista"
-            android:theme="@style/AppTheme.Home"/>
+        <activity android:name=".RecyclerView"></activity>
+        <activity
+            android:name=".FinalList"
+            android:theme="@style/AppTheme.Home" />
+        <activity
+            android:name=".Lista"
+            android:theme="@style/AppTheme.Home" />
         <activity android:name=".Equip" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".Main2Activity" />
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:theme="@style/AppTheme.Home2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

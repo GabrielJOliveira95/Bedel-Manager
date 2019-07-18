@@ -28,7 +28,7 @@ public class FinalList extends AppCompatActivity {
     private String scheduleR;
     private Intent intent;
     private Bundle bundle;
-    private String totalTask = "";
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -81,10 +81,12 @@ public class FinalList extends AppCompatActivity {
                 public void onClick(View v) {
 
                     Bundle bundle2 = ActivityOptionsCompat.makeSceneTransitionAnimation(FinalList.this).toBundle();
-                    intent = new Intent(FinalList.this, Lista.class);
-                    totalTask = "Room " + editText_room.getText() + " - " + equipR + " - " + "Data N° " + editText_data.getText() + " - " + "Schedule " + scheduleR;
+                    intent = new Intent(FinalList.this, RecyclerView.class);
                     bundle = new Bundle();
-                    bundle.putString("task", totalTask);
+                    bundle.putString("sala", editText_room.getText().toString());
+                    bundle.putString("equipamento", equipR);
+                    bundle.putString("numero_do_data", editText_data.getText().toString());
+                    bundle.putString("horario", scheduleR);
                     intent.putExtras(bundle);
                     editText_data.setText("");
                     editText_room.setText("");
